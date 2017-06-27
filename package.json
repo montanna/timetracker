@@ -1,0 +1,22 @@
+{
+    "name": "timetracker",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "dependencies": {
+        "express": "^4.15.2",
+        "pug": "^2.0.0-beta11",
+        "vue": "^2.2.6"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "start": "node index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/montanna/timetracker/"
+    },
+    "author": "montanna",
+    "license": "ISC"
+}
