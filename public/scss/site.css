@@ -14,7 +14,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: 'Bitter';
+  font-family: 'Montserrat';
   font-weight: 300; }
 
 hr {
@@ -45,7 +45,7 @@ input:focus {
   color: #5e5e5e;
   outline: none; }
 
-.danger, .pages > .page > .form > .empty > input, .pages > .page > .form > .empty > label {
+.danger {
   border: 2px solid #f97b7b !important;
   background: white !important;
   color: #f97b7b !important; }
@@ -68,20 +68,27 @@ input:focus {
   .flexParent > div {
     flex: 0 1 auto; }
 
-.close:hover {
-  color: #5e5e5e; }
+.close {
+  position: absolute;
+  top: 5px;
+  right: 5px; }
+  .close:hover {
+    color: #5e5e5e; }
 
 .btn, .btnBlue, .btnGreen, .btnRed, .btnPurple {
   border-radius: 4px;
   padding: 10px;
-  margin: 10px;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
   color: #fff;
   font-family: 'Open Sans';
   font-weight: 400;
   font-size: 18px;
   text-align: center;
   text-transform: uppercase;
-  transition: 0.3s all ease; }
+  transition: 0.3s all ease;
+  max-width: 25vw; }
   .btn:hover, .btnBlue:hover, .btnGreen:hover, .btnRed:hover, .btnPurple:hover {
     cursor: pointer; }
 
@@ -114,7 +121,7 @@ input:focus {
   height: 100vh;
   max-width: 100%;
   position: fixed;
-  top: 0;
+  top: 50px;
   left: 0;
   background: rgba(10, 10, 10, 0.8);
   display: none;
@@ -192,43 +199,6 @@ nav {
   margin-top: 20px;
   text-align: center; }
 
-.homeBtnRow {
-  margin-top: 20px; }
-
-.mapBtn,
-.graphBtn,
-.reportBtn {
-  text-align: center;
-  flex: 0.1 1 auto !important;
-  margin: 4px; }
-  .mapBtn > svg,
-  .graphBtn > svg,
-  .reportBtn > svg {
-    width: 25vw;
-    height: 25vw; }
-  .mapBtn > p,
-  .graphBtn > p,
-  .reportBtn > p {
-    text-align: center;
-    font-size: 0.8em;
-    margin: 0 auto; }
-
-svg {
-  pointer-events: none; }
-
-.submitBtn {
-  max-width: 80%;
-  margin: 0 auto;
-  margin-top: 20px;
-  font-size: 18px; }
-
-.message {
-  background: rgba(26, 26, 26, 0.15);
-  width: 80%;
-  margin: 0 auto;
-  padding: 5px;
-  margin-top: 10px; }
-
 .addBtn {
   position: absolute;
   top: 90vh;
@@ -253,129 +223,11 @@ svg {
         content: "Add a new message";
         font-family: "Open sans"; }
 
-/* Section 2 */
-#section2 > #card {
-  z-index: 1;
-  position: fixed;
-  top: 0;
-  left: 100vw;
-  background: #fff;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  height: 100vh;
-  width: calc(-30px + 100vw);
-  padding: 50px 15px;
-  transition: left 0.4s ease-in-out; }
-  #section2 > #card > .close {
-    float: right;
-    padding: 20px 10px; }
-#section2 > .flexParent {
-  flex-direction: column; }
-  #section2 > .flexParent > .btn, #section2 > .flexParent > .btnBlue, #section2 > .flexParent > .btnGreen, #section2 > .flexParent > .btnRed, #section2 > .flexParent > .btnPurple {
-    width: 80%;
-    height: 10vh;
-    line-height: 10vh;
-    margin: 0 auto;
-    margin-top: 20px;
-    padding: 15px; }
-
-.step {
-  display: inline-block;
-  background-color: #26B2DD;
-  color: #fff;
-  border-radius: 30px;
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  line-height: 30px;
-  margin: 20px;
-  position: relative;
-  z-index: 9; }
-  .step > .stepchild {
-    width: 0;
-    height: 0;
-    position: absolute;
-    transition: all 0.2s ease-in-out;
-    overflow: hidden; }
-    .step > .stepchild.s1 {
-      top: -20px; }
-    .step > .stepchild.s2 {
-      top: 20px; }
-    .step > .stepchild.s3 {
-      top: 60px; }
-    .step > .stepchild.s4 {
-      top: 100px; }
-    .step > .stepchild.s5 {
-      top: 140px; }
-
-.progressBar {
-  background: #e0e0e0;
-  height: 5px; }
-
-.progress {
-  background: #2db068;
-  height: 5px;
-  transition: width 0.3s ease; }
-
-.progress.p10 {
-  width: 10%; }
-
-.progress.p20 {
-  width: 20%; }
-
-.progress.p30 {
-  width: 30%; }
-
-.progress.p40 {
-  width: 40%; }
-
-.progress.p50 {
-  width: 50%; }
-
-.progress.p60 {
-  width: 60%; }
-
-.progress.p70 {
-  width: 70%; }
-
-.progress.p80 {
-  width: 80%; }
-
-.progress.p90 {
-  width: 90%; }
-
-.progress.p100 {
-  width: 100%; }
-
-.pages {
-  position: absolute;
-  left: 0px;
-  transition: left 0.4s ease-in-out;
-  display: flex; }
-  .pages > .page {
-    flex: 0 1 auto;
-    width: 100vw; }
-    .pages > .page > .form {
-      flex-direction: column;
-      padding: 15px; }
-      .pages > .page > .form > .btn, .pages > .page > .form > .btnBlue, .pages > .page > .form > .btnGreen, .pages > .page > .form > .btnRed, .pages > .page > .form > .btnPurple {
-        width: calc(100% - 15px);
-        margin: 30px 0; }
-      .pages > .page > .form > .inputGroup > label, .pages > .page > .form > .inputGroup > input, .pages > .page > .form > .inputGroup > select {
-        display: block;
-        flex: 0 1 auto;
-        font-size: 18px; }
-      .pages > .page > .form > .inputGroup > label {
-        margin-top: 10px; }
-      .pages > .page > .form > .required > label {
-        font-weight: bold; }
-        .pages > .page > .form > .required > label:after {
-          content: " *"; }
-      .pages > .page > .form > .empty > label {
-        background: none !important;
-        border: none !important; }
-
-#map {
-  height: 75vh; }
+.project {
+  background: #eee;
+  padding: 10px;
+  border-radius: 10px;
+  position: relative; }
 
 .splashScreen {
   display: flex;
@@ -397,46 +249,6 @@ svg {
   .splashScreen > div > h4 {
     color: #fff; }
 
-.graphIcon .st0 {
-  fill: #2D9CDB; }
-.graphIcon .st1 {
-  fill: #2F80ED; }
-.graphIcon .st2 {
-  fill: #56CCF2; }
-.graphIcon .st3 {
-  fill: #8DEAFF; }
-
-.reportIcon .st0 {
-  fill: #BDBDBD; }
-.reportIcon .st1 {
-  fill: #e5e5e5; }
-.reportIcon .st2 {
-  fill: none;
-  stroke: #E0E0E0;
-  stroke-width: 10;
-  stroke-miterlimit: 10; }
-.reportIcon .st3 {
-  fill: #d2d2d2; }
-.reportIcon .st4 {
-  fill: #56CCF2; }
-
-.mapIcon .st0 {
-  fill: #e5e5e5; }
-.mapIcon .st1 {
-  fill: #56ccf2; }
-.mapIcon .st2 {
-  fill: #d2d2d2; }
-.mapIcon .st3 {
-  fill: #d2d2d2; }
-.mapIcon .st4 {
-  fill: #fff; }
-.mapIcon .st5 {
-  fill: #c2c2c2; }
-.mapIcon .st6 {
-  fill: #BDBDBD; }
-.mapIcon .st7 {
-  fill: #f97b7b; }
-
 .loader {
   border: 6px solid rgba(0, 0, 0, 0.15);
   border-top: 6px solid #fff;
@@ -451,5 +263,21 @@ svg {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+@media screen and (min-width: 720px) {
+  nav > ul > li {
+    display: inline; }
+
+  nav > ul {
+    display: inline;
+    padding: 5px; }
+
+  #navHeader {
+    display: inline; }
+
+  nav {
+    padding: 5px; }
+
+  .navCollapseToggleBtn {
+    display: none; } }
 
 /*# sourceMappingURL=site.css.map */

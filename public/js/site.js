@@ -40,19 +40,28 @@
 
              }
              //set user data in the viewmodel
+             if (!user.displayName) {
+                 user.updateProfile({
+                     displayName: "User"
+                 })
+             }
              vm.user.uid = user.uid;
              vm.user.name = user.displayName;
+
+
 
              //get list of users with admin role to see if the current user is one
              var ref = firebase.database().ref("users/" + user.uid);
              var role;
              ref.on('value', function(snapshot) {
                  role = snapshot.val().role;
+                 vm.projects = snapshot.val().projects;
                  if (role === "admin") {
                      vm.user.role = "admin";
                  } else
                      vm.user.role = "user";
              });
+
 
          });
 
@@ -60,9 +69,11 @@
      data: {
          page: "Home",
          user: { name: "", uid: "", role: "" },
+         projects: [],
          email: "",
          pass: "",
          warning: "",
+         projectToDelete: 0
      },
 
      methods: {
@@ -124,13 +135,52 @@
              var pWarning = document.getElementById(warning);
              warning.classList = ""; //remove success or danger class that may be applied to login warning
          },
+
          closeModal: function() {
-             var modal = document.getElementById("modal");
-             modal.style.display = "none";
+             var modals = document.getElementsByClassName("modal");
+             for (var i = 0; i < modals.length; i++) {
+                 modals[i].style.display = "none";
+
+             }
          },
          showModal: function() {
              var modal = document.getElementById("modal");
              modal.style.display = "block";
+         },
+         startTime: function(e) {
+             var time = new Date();
+             var start = time.toUTCString();
+             var index = e.target.parentElement.classList[1].slice(1, 2);
+             vm.projects[index].startTime = start;
+             vm.projects[index].start = false;
+         },
+         endTime: function(e) {
+             var time = new Date();
+             var end = time.toUTCString();
+             var index = e.target.parentElement.classList[1].slice(1, 2);
+             vm.projects[index].endTime = end;
+             vm.projects[index].start = true;
+             var start = Date.parse(vm.projects[index].startTime);
+             var diff = time - start;
+             diff = diff / 1000; //convert from milliseconds to seconds
+             diff = diff / 360; //convert from seconds to hours
+             vm.projects[index].hours += diff;
+             vm.projects[index].hours = +vm.projects[index].hours.toFixed(2);
+             firebase.database().ref('users/' + vm.user.uid).set({
+                 projects: vm.projects
+             });
+         },
+         deleteProject: function(e) {
+             var index = e.target.parentElement.parentElement.classList[1].slice(1, 2);
+             vm.projectToDelete = index;
+             var modal = document.getElementById("deleteModal");
+             modal.style.display = "block";
+         },
+         deleteProjectFR: function(e) {
+             var index = vm.projectToDelete;
+             vm.projects.splice(index, 1);
+             vm.closeModal();
+
          },
 
          scrollTo: function(event) {
@@ -187,6 +237,13 @@
  })
 
  document.body.onload = function() {
+     var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+     var nav = document.getElementById("navbar");
+     if (w > 600) {
+         nav.classList = "";
+     }
+
+
      var ss = document.getElementsByClassName("splashScreen")[0];
      ss.style.opacity = 0;
      setTimeout(function() {
